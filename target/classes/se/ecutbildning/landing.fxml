@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchor_bk" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../../style/landing.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.ecutbildning.controllers.LandingController">
+   <ImageView fitHeight="112.0" fitWidth="109.0" layoutX="148.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../pngs/hang.png" />
+   </ImageView>
+   <Label fx:id="hangman_lable" alignment="CENTER" layoutX="210.0" layoutY="279.0" prefHeight="124.0" prefWidth="534.0" text="HANGMAN" />
+   <Button fx:id="btn_play" layoutX="382.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="50.0" prefWidth="129.0" text="PLAY" />
+</AnchorPane>

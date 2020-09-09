@@ -1,0 +1,57 @@
+#newg_lbl{
+    -fx-text-fill: #8c2424;
+    -fx-font-size: 28pt;
+    -fx-font-weight: bold;
+
+}
+
+
+#change_btn{
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+            linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+
+    -fx-min-width: 60px;
+    -fx-min-height: 30px;
+    -fx-max-width: 120px;
+    -fx-max-height: 30px;
+}
+
+
+
+#game_bk{
+    -fx-background-color: #2D2B3A;
+}
+
+.button{
+
+    -fx-background-radius: 25em;
+    -fx-min-width: 42px;
+    -fx-min-height: 42px;
+    -fx-max-width: 42px;
+    -fx-max-height: 42px;
+}
+
+
+
+
+#letter_mystery{
+    -fx-font-size: 24pt;
+    -fx-font-family: "HoloLens MDL2 Assets";
+    -fx-text-fill: white;
+}
+.button:hover{
+
+    -fx-background-color: #3f4459;
+
+}
+
+#label_mystery{
+
+    -fx-font-size: 35pt;
+}
