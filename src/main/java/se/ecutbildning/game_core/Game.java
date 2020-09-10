@@ -10,7 +10,9 @@ public class Game {
     private static StringBuilder currentGuess;
     WordStreamer wordStreamer = new WordStreamer();
     private String mysteryWord;
-    private ArrayList<Character >  previousGuesses =new ArrayList<>();
+    private ArrayList<Character> previousGuesses = new ArrayList<>();
+
+    private int tries = -1;
 
 
     public Game() throws FileNotFoundException {
@@ -21,24 +23,17 @@ public class Game {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     // - - - a - - e
     //Dashing a word.
-    public StringBuilder initCurrentGuess(){
+    public StringBuilder initCurrentGuess() {
         currentGuess = new StringBuilder();
-        currentGuess.append("_".repeat(this.mysteryWord.length() / 2));
+       for (int i = 0; i < this.mysteryWord.length() *2 ;i ++){
+           if (i % 2 == 0){
+               currentGuess.append("_");
+           }
+           else {
+               currentGuess.append(" ");           }
+       }
         return currentGuess;
     }
 
@@ -48,69 +43,70 @@ public class Game {
     public boolean checkGuess(char guess) {
 
 
-        for (int i = 0; i < this.mysteryWord.length() ; i++) {
+        boolean returnValue = false;
+        for (int i = 0; i < this.mysteryWord.length(); i++) {
 
             if (this.mysteryWord.charAt(i) == guess) {
 
+
                 this.previousGuesses.add(guess);
-                currentGuess.setCharAt(i/2, guess);
-                return true;
+                currentGuess.setCharAt(i * 2, guess);
+                returnValue = true;
             }
+
 
         }
 
+        return returnValue;
 
-        return false;
     }
 
 
+    //check if the whole word is guessed
+    public boolean isAlreadyGuessed() {
+
+
+        //TODO
+        //delete after testing
+        System.out.println("Guessed: " + getFormalCurrentGuess());
+        System.out.println("Mystery word: " + this.mysteryWord);
+        System.out.println("guessed word length: " + getFixedString().length());
+        System.out.println("Mystery word length: " + this.mysteryWord.length());
+
+        boolean returnValue = false;
+        if (getFixedString().equals(this.mysteryWord)) {
+            returnValue = true;
+        }
+
+
+
+
+        return returnValue;
+    }
+//
+//
+//    //replace guessed letters
+//    private void replaceGuessedLetter(){
+//        for (char c: previousGuesses) {
+//
+//            for (char letter: mysteryWord.toCharArray() ) {
+//
+//                if (c == letter){
+//                    currentGuess.
+//                }
+//            }
+//        }
+//    }
+
     //get formal current guess 'normal string'
-    public String getFormalCurrentGuess(){
+    public String getFormalCurrentGuess() {
         return currentGuess.toString();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String getFixedString(){
+        String guessedWord = getFormalCurrentGuess();
+        return guessedWord.replace(" ", "" );
+    }
 
     //Getters And Setters
     public String getNewMesteryWord() {

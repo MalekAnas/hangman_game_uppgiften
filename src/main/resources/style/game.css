@@ -30,6 +30,7 @@
 
 .button{
 
+    -fx-background-color: #b8afaf;
     -fx-background-radius: 25em;
     -fx-min-width: 42px;
     -fx-min-height: 42px;
@@ -54,7 +55,7 @@
 
 #label_mystery{
 
-    -fx-font-size: 35pt;
+    -fx-font-size: 25pt;
 }
 
 #gameover_label{

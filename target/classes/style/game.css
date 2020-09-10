@@ -30,6 +30,7 @@
 
 .button{
 
+    -fx-background-color: #b8afaf;
     -fx-background-radius: 25em;
     -fx-min-width: 42px;
     -fx-min-height: 42px;
@@ -44,6 +45,7 @@
     -fx-font-size: 24pt;
     -fx-font-family: "HoloLens MDL2 Assets";
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 .button:hover{
 
@@ -53,5 +55,11 @@
 
 #label_mystery{
 
-    -fx-font-size: 35pt;
+    -fx-font-size: 25pt;
+}
+
+#gameover_label{
+    -fx-font-size: 24pt;
+    -fx-font-family: "HoloLens MDL2 Assets";
+    -fx-text-fill: #860505;
 }

@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,16 +10,9 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="game_bk" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../../style/game.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.ecutbildning.controllers.GameController">
-   <HBox fx:id="tries_container" layoutX="18.0" layoutY="25.0" prefHeight="10.0" prefWidth="704.0">
-      <children>
-         <ImageView fx:id="heart_icon" fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../pngs/heart.png" />
-         </ImageView>
-      </children>
-   </HBox>
    <VBox fx:id="keyboard" layoutX="363.0" layoutY="492.0" prefHeight="165.0" prefWidth="502.0">
       <children>
-         <HBox alignment="CENTER" prefHeight="32.0" prefWidth="490.0" spacing="8.0">
+         <HBox fx:id="qwerty" alignment="CENTER" prefHeight="32.0" prefWidth="490.0" spacing="8.0">
             <opaqueInsets>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </opaqueInsets>
@@ -38,7 +30,7 @@
             <Button fx:id="O" maxHeight="25.0" maxWidth="30.0" mnemonicParsing="false" onMousePressed="#printLetter" prefHeight="25.0" prefWidth="30.0" text="O" />
             <Button fx:id="P" maxHeight="25.0" maxWidth="30.0" mnemonicParsing="false" onMousePressed="#printLetter" prefHeight="25.0" prefWidth="30.0" text="P" />
          </HBox>
-         <HBox alignment="CENTER" prefHeight="42.0" prefWidth="526.0" spacing="8.0">
+         <HBox fx:id="asdf" alignment="CENTER" prefHeight="42.0" prefWidth="526.0" spacing="8.0">
             <opaqueInsets>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </opaqueInsets>
@@ -55,7 +47,7 @@
             <Button fx:id="K" maxHeight="25.0" maxWidth="30.0" mnemonicParsing="false" onMousePressed="#printLetter" prefHeight="25.0" prefWidth="30.0" text="K" />
             <Button fx:id="L" maxHeight="25.0" maxWidth="30.0" mnemonicParsing="false" onMousePressed="#printLetter" prefHeight="25.0" prefWidth="30.0" text="L" />
          </HBox>
-         <HBox fx:id="keyboard" alignment="CENTER" prefHeight="42.0" prefWidth="526.0" spacing="8.0">
+         <HBox fx:id="zxcv" alignment="CENTER" prefHeight="42.0" prefWidth="526.0" spacing="8.0">
             <opaqueInsets>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </opaqueInsets>
@@ -72,13 +64,11 @@
          </HBox>
       </children>
    </VBox>
-   <ImageView fx:id="hangman_drawing" fitHeight="293.0" fitWidth="222.0" layoutX="45.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../pngs/hangman/scaffold-6.png" />
-   </ImageView>
+   <ImageView fx:id="hangman_drawing" fitHeight="293.0" fitWidth="222.0" layoutX="45.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
    <Button fx:id="change_btn" layoutX="756.0" layoutY="26.0" maxHeight="52.0" maxWidth="188.0" minHeight="32.0" mnemonicParsing="false" onAction="#pickAnotherWord" prefHeight="32.0" prefWidth="120.0" stylesheets="@../../style/game.css" text="Pick another word!" />
-   <VBox alignment="CENTER" layoutX="321.0" layoutY="125.0" prefHeight="308.0" prefWidth="556.0">
+   <VBox alignment="CENTER" layoutX="364.0" layoutY="127.0" prefHeight="308.0" prefWidth="512.0">
       <children>
-         <Label fx:id="label_mystery" alignment="CENTER" lineSpacing="5.0" prefHeight="127.0" prefWidth="553.0" textFill="WHITE">
+         <Label fx:id="label_mystery" alignment="CENTER" lineSpacing="5.0" prefHeight="127.0" prefWidth="591.0" textFill="WHITE">
             <font>
                <Font size="25.0" />
             </font>
