@@ -25,6 +25,7 @@ public class LandingController {
 
 
 
+    //go to game scene
     @FXML
     private void switchToGame() throws IOException {
         App.setRoot("game");

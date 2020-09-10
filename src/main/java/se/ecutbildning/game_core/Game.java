@@ -12,12 +12,11 @@ public class Game {
     private String mysteryWord;
     private ArrayList<Character> previousGuesses = new ArrayList<>();
 
-    private int tries = -1;
 
 
+
+    //construct the class with a random mystery word and dashing it
     public Game() throws FileNotFoundException {
-
-
         this.mysteryWord = wordStreamer.getRandomWord();
         initCurrentGuess();
     }
@@ -27,19 +26,19 @@ public class Game {
     //Dashing a word.
     public StringBuilder initCurrentGuess() {
         currentGuess = new StringBuilder();
-       for (int i = 0; i < this.mysteryWord.length() *2 ;i ++){
-           if (i % 2 == 0){
-               currentGuess.append("_");
-           }
-           else {
-               currentGuess.append(" ");           }
-       }
+        for (int i = 0; i < this.mysteryWord.length() * 2; i++) {
+            if (i % 2 == 0) {
+                currentGuess.append("_");
+            } else {
+                currentGuess.append(" ");
+            }
+        }
         return currentGuess;
     }
 
 
     //check if guess is equal to one of mystery word's chars
-
+    //and replace it in the stringBuilder currentGuess to be able to show the guessed chars
     public boolean checkGuess(char guess) {
 
 
@@ -79,33 +78,17 @@ public class Game {
         }
 
 
-
-
         return returnValue;
     }
-//
-//
-//    //replace guessed letters
-//    private void replaceGuessedLetter(){
-//        for (char c: previousGuesses) {
-//
-//            for (char letter: mysteryWord.toCharArray() ) {
-//
-//                if (c == letter){
-//                    currentGuess.
-//                }
-//            }
-//        }
-//    }
 
     //get formal current guess 'normal string'
     public String getFormalCurrentGuess() {
         return currentGuess.toString();
     }
 
-    public String getFixedString(){
+    public String getFixedString() {
         String guessedWord = getFormalCurrentGuess();
-        return guessedWord.replace(" ", "" );
+        return guessedWord.replace(" ", "");
     }
 
     //Getters And Setters

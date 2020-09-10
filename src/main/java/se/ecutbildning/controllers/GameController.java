@@ -1,15 +1,10 @@
 package se.ecutbildning.controllers;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -25,8 +20,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameController implements Initializable {
 
@@ -152,7 +145,7 @@ public class GameController implements Initializable {
     private Game game = new Game();
     private char guess;
     private int tries = -1;
-    private int maxTries = 6;
+    private int maxTries = 5;
     private int triesPerLife;
 
     private String imageUrl;
@@ -174,20 +167,32 @@ public class GameController implements Initializable {
 
     }
 
-
+    //Event that occurs once a keyboard is clicked.
+    //reads the guess char
+    //
     @FXML
     void printLetter(MouseEvent event) throws FileNotFoundException {
 
 
+        //reads guess char
         guess = ((Button) event.getSource()).getText().toLowerCase().charAt(0);
+
+        //debug souts
         System.out.println(guess);
         System.out.println(game.checkGuess(guess));
 
+        //check if the guess is correct
         if (game.checkGuess(guess)) {
+            //change the color of keyboard button when the guess is correct
             ((Button) event.getSource()).setStyle("-fx-background-color: forestgreen");
+            //update the UI with new guessed chars
             updaterLabel();
+
+            //debug souts
             System.out.println(game.getFormalCurrentGuess());
             System.out.println("Is it guessed: " + game.isAlreadyGuessed());
+
+            //when the whole mystery word is correctly guessed
             if (game.isAlreadyGuessed()) {
                 gameover_label.setText("You Win!");
                 gameover_label.setVisible(true);
@@ -196,20 +201,32 @@ public class GameController implements Initializable {
         }
 
 
+        //if the char guess is not correct
         if (!(game.checkGuess(guess))) {
 
+            //consume one try
             tries = tries + 1;
+            //imageUrl variable updates based on try
             updateDrawingBasedOnCurrentTry();
+
+            //debugging souts
             System.out.println(tries);
             System.out.println(imageUrl);
+
+            //draw the hangman based on the try value, assign new image url to the imageView
             hangman_drawing.setImage(new Image(getClass().getResourceAsStream(imageUrl)));
+
+            //set button style to red color to indicate the wrong guess
             ((Button) event.getSource()).setStyle("-fx-background-color: #ac3636");
 
+            //check loss
             if (tries > maxTries) {
+                //show loss msg
                 gameover_label.setText("You lose!");
                 gameover_label.setVisible(true);
                 gameover_label.setStyle("-fx-text-fill: #8c2424");
 
+                //after 5 sec the game will repeat with new word
                 autoStartNewGame();
 
             }
@@ -248,6 +265,8 @@ public class GameController implements Initializable {
 
     }
 
+
+    //decides in which stage the game is based on tries consumed. update image url
     private void updateDrawingBasedOnCurrentTry() {
         switch (tries) {
             case 0 -> this.imageUrl = "/pngs/hangman/scaffold-0.png";
@@ -263,6 +282,7 @@ public class GameController implements Initializable {
     }
 
 
+    //update lable in UI for the mystery dashed word
     public void updaterLabel() {
 
 
@@ -270,17 +290,7 @@ public class GameController implements Initializable {
     }
 
 
-
-
-    public char getGuess() {
-        return guess;
-    }
-
-    public void setGuess(char guess) {
-        this.guess = guess;
-    }
-
-
+    //Reset keyboard style
     private void setKeyboardStyleToDefault() {
         Q.setStyle("-fx-background-color: #b8afaf;");
         W.setStyle("-fx-background-color: #b8afaf;");
@@ -312,6 +322,7 @@ public class GameController implements Initializable {
 
     }
 
+    //UI reset
     private void resetImageAndScore() {
         tries = -1;
         gameover_label.setText("");
@@ -319,6 +330,7 @@ public class GameController implements Initializable {
     }
 
 
+    //time line task that repeats the same sequence when picking new word , in other words reset the game with new word to guess
     private void autoStartNewGame() {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), ev -> {
@@ -338,15 +350,19 @@ public class GameController implements Initializable {
             System.out.println(game.getMysteryWord());
             System.out.println(game.getFormalCurrentGuess());
 
-            //update the dashed word with correct guessed chars
+            //update the dashed word lable in ui with correct guessed chars
             updaterLabel();
         }));
-        timeline.setCycleCount( 1);
+        timeline.setCycleCount(1);
         timeline.play();
 
     }
 
-    public void saveCodeHere() {
+
+
+
+
+    public void saveCodeHereIfUDoNotNeedIt() {
         // letter_mystery.setText(((Button)event.getSource()).getText());
 
 

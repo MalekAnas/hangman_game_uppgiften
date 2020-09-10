@@ -1,8 +1,10 @@
 package se.ecutbildning.game_core;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class WordStreamer {
 
@@ -12,6 +14,7 @@ public class WordStreamer {
     private ArrayList<String> words = new ArrayList<>();
 
 
+    //construct the class with a functionality of reading the txt file and storing the words to an arraylist "words"
     public WordStreamer() throws FileNotFoundException {
 
 
@@ -29,9 +32,7 @@ public class WordStreamer {
     }
 
 
-
-
-
+    //to bring a random word
     public String getRandomWord() {
 
         if (words.isEmpty())
@@ -43,7 +44,7 @@ public class WordStreamer {
     }
 
 
-
+    //for debugging
     public static void getFileInfo(String fileName) {
         File myObj = new File(fileName);
         if (myObj.exists()) {
