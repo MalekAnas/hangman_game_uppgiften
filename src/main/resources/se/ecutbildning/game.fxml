@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="game_bk" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@../../style/game.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.ecutbildning.controllers.GameController">
-   <HBox fx:id="tries_container" layoutX="14.0" layoutY="8.0" prefHeight="33.0" prefWidth="874.0">
+   <HBox fx:id="tries_container" layoutX="18.0" layoutY="25.0" prefHeight="10.0" prefWidth="704.0">
       <children>
-         <ImageView fx:id="heart_icon" fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="heart_icon" fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../pngs/heart.png" />
          </ImageView>
       </children>
@@ -75,10 +75,15 @@
    <ImageView fx:id="hangman_drawing" fitHeight="293.0" fitWidth="222.0" layoutX="45.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../../pngs/hangman/scaffold-6.png" />
    </ImageView>
-   <Label fx:id="label_mystery" alignment="CENTER" layoutX="332.0" layoutY="166.0" lineSpacing="5.0" prefHeight="127.0" prefWidth="553.0" textFill="WHITE">
-      <font>
-         <Font size="25.0" />
-      </font>
-   </Label>
-   <Button fx:id="change_btn" layoutX="745.0" layoutY="34.0" maxHeight="52.0" maxWidth="188.0" minHeight="32.0" mnemonicParsing="false" onAction="#pickAnotherWord" prefHeight="32.0" prefWidth="120.0" stylesheets="@../../style/game.css" text="Pick another word!" />
+   <Button fx:id="change_btn" layoutX="756.0" layoutY="26.0" maxHeight="52.0" maxWidth="188.0" minHeight="32.0" mnemonicParsing="false" onAction="#pickAnotherWord" prefHeight="32.0" prefWidth="120.0" stylesheets="@../../style/game.css" text="Pick another word!" />
+   <VBox alignment="CENTER" layoutX="321.0" layoutY="125.0" prefHeight="308.0" prefWidth="556.0">
+      <children>
+         <Label fx:id="label_mystery" alignment="CENTER" lineSpacing="5.0" prefHeight="127.0" prefWidth="553.0" textFill="WHITE">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+         <Label fx:id="gameover_label" alignment="CENTER" prefHeight="83.0" prefWidth="560.0" text="YOU LOSE!" />
+      </children>
+   </VBox>
 </AnchorPane>

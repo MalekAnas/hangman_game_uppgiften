@@ -2,6 +2,7 @@ package se.ecutbildning.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -11,8 +12,10 @@ import javafx.scene.layout.HBox;
 import se.ecutbildning.game_core.Game;
 
 import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class GameController {
+public class GameController  implements Initializable {
 
 
     @FXML
@@ -35,6 +38,8 @@ public class GameController {
     @FXML
     private Label label_mystery;
 
+    @FXML
+    private Label gameover_label;
 
     @FXML
     private Button change_btn;
@@ -42,25 +47,55 @@ public class GameController {
     private HBox mystery_word;
 
 
+
     //Game obj
 
-    private Game game = new Game();
-    char guess;
+    private Game game= new Game();
+    private char guess;
+    private int tries;
+
+    private boolean isCorrectAnswer;
 
     public GameController() throws FileNotFoundException {
     }
 
 
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+
+        gameover_label.setVisible(false);
+
+        System.out.println(game.getMysteryWord());
+        System.out.println(game.getFormalCurrentGuess());
+        label_mystery.setText(game.getFormalCurrentGuess());
+
+    }
+
+
+
     @FXML
-    void printLetter(MouseEvent event) {
+    void printLetter(MouseEvent event) throws FileNotFoundException {
         System.out.println(((Button) event.getSource()).getText());
 
 
-        label_mystery.setText(game.getFormalCurrentGuess());
+        guess = ((Button) event.getSource()).getText().toLowerCase().charAt(0);
 
-        String readString = ((Button) event.getSource()).getText();
-        guess = readString.charAt(0);
-        System.out.println(guess + " Guess");
+        isCorrectAnswer = game.checkGuess(guess);
+
+        if (!isCorrectAnswer){
+            tries = tries + 1;
+            if (tries > 6){
+                gameover_label.setText("You lose!");
+                gameover_label.setVisible(true);
+                gameover_label.setStyle("-fx-text-fill: #8c2424");
+            }
+        }
+
+
+
         updaterLabel();
 
 
@@ -69,41 +104,40 @@ public class GameController {
 
 
     @FXML
-    void pickAnotherWord(ActionEvent event) {
-
-        String mw = game.getMesteryWord();
-        System.out.println(mw);
-        System.out.println(game.initCurrentGuess(mw).toString());
-        label_mystery.setText(game.getFormalCurrentGuess());
-
-    }
+    void pickAnotherWord(ActionEvent event) throws FileNotFoundException {
 
 
-    public void checkGuess(Character ch) {
+        game.setMysteryWord(game.getNewMesteryWord());
+        game.initCurrentGuess();
 
-
-        for (int i = 0; i < game.getMesteryWord().length() *2; i++) {
-
-            if (game.getMesteryWord().charAt(i) == ch) {
-
-                game.getPreviousGuesses().add(ch);
-                game.getCurrentGuess().setCharAt(i/2, ch);
-            }
-
-        }
-
+        System.out.println(game.getMysteryWord());
+        System.out.println(game.getFormalCurrentGuess());
+        updaterLabel();
 
     }
+
 
 
     public void updaterLabel (){
-        checkGuess(guess);
+
+
         label_mystery.setText(game.getFormalCurrentGuess());
     }
     public void saveCodeHere() {
         // letter_mystery.setText(((Button)event.getSource()).getText());
 
     }
+
+
+
+    public char getGuess() {
+        return guess;
+    }
+
+    public void setGuess(char guess) {
+        this.guess = guess;
+    }
+
 
 
 }
